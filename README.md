@@ -36,7 +36,7 @@ Dependencies are included into docker image, we took care of it.
 ### Install
 
 ```DOCKERFILE
-docker pull psychemisss/aqua-bot-bugreports
+docker pull psychemisss/aqua-bot-bugreports:latest
 ```
 
 ### Configure 
@@ -62,7 +62,7 @@ https://www.notion.so/myworkspace/a8aec43384f447ed84390e8e42c2e089?v=...
 ### Usage
 *Running using .env to configure*
 ```bash
-docker run --env-file ./env --name YOUR_CONTAINER_NAME psychemisss/aqua-bot-bugreports
+docker run --env-file ./env --name YOUR_CONTAINER_NAME psychemisss/aqua-bot-bugreports:latest
 ```
 *Configuring env's manually*
 ```bash
@@ -71,9 +71,9 @@ docker run --e DISCORD_TOKEN=YOUR_TOKEN_HERE \
   NOTION_DATABASE=YOUR_DATABASE \
   NOTION_SECRET=YOUR_SECRET \
   NOTION_VERSION=YOUR_VERSION \
-  --name YOUR_CONTAINER_NAME psychemisss/aqua-bot-bugreports
+  --name YOUR_CONTAINER_NAME psychemisss/aqua-bot-bugreports:latest
 ```
-**After all this actions are done, any your bot came online, you can use it by typing `/feedback` and `/feedback_menu` commands inside yout discord server**
+**After all this actions are done, any your bot came online, you can use it by typing `/feedback` and `/feedback_menu` commands inside your discord server**
 
 ### Issues
 
