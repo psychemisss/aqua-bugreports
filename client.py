@@ -2,7 +2,7 @@ import discord
 from discord import app_commands
 
 from cogs.feedback import Feedback, ReportMenu
-from helpers.config_manager import load_env_variable
+from helpers.config_manager import load_env_variable, load_config_variable
 
 GUILD = discord.Object(load_env_variable("DISCORD_GUILD"))
 
@@ -34,9 +34,11 @@ async def feedback(interaction: discord.Interaction):
 
 @client.tree.command(guild=GUILD, description="Send report menu to a channel")
 async def feedback_menu(interaction: discord.Interaction):
-    embed = discord.Embed(title='Отчет об ошибке',
-                          description='Вы можете отправить отчет об ошибке, нажав на кнопку ниже',
-                          color=discord.Color.red())
+    embed = discord.Embed(
+        title=load_config_variable("FEEDBACK_MENU", "MENU_TITLE"),
+        description=load_config_variable("FEEDBACK_MENU", "MENU_DESCRIPTION"),
+        color=discord.Color.red()
+    )
     await interaction.response.send_message(embed=embed, view=ReportMenu())
 
 

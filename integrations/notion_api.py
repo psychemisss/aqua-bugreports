@@ -23,6 +23,10 @@ class NotionAPI:
         self.ping()
 
     def ping(self) -> None:
+        """
+        Check if the API is working
+        :return: None
+        """
         result = requests.request("GET", self.urls['database'], headers=self.headers)
 
         if result.status_code != 200:
@@ -32,7 +36,14 @@ class NotionAPI:
             print("Notion API is available")
 
     def create_report(self, name: str = "Undefined", description: str = "Undefined", attachments: str = "Undefined") -> None:
+        """
+        Create a new report in Notion database
+        :param name: report name
+        :param description: report description
+        :param attachments: report attachments
 
+        :return: None
+        """
         page_data = {
             "parent": {
                 "database_id": self.database

@@ -73,7 +73,16 @@ docker run --e DISCORD_TOKEN=YOUR_TOKEN_HERE \
   NOTION_VERSION=YOUR_VERSION \
   --name YOUR_CONTAINER_NAME psychemisss/aqua-bot-bugreports:latest
 ```
-**After all this actions are done, any your bot came online, you can use it by typing `/feedback` and `/feedback_menu` commands inside your discord server**
+**After followed actions are done, and your bot came online, you can use it by typing `/feedback` and `/feedback_menu` commands inside your discord server**
+
+### Developers Guide
+For now there is an option for changing text of messages, embeds and buttons. To do this, follow instructions below:
+```bash
+1. Download source code from the repository.
+2. Open config.json file and change anything you want text.
+3. Build docker image using Dockerfile: docker build -t YOUR_IMAGE_NAME
+4. Go to Usage section to run your bot.
+```
 
 ### Issues
 
@@ -81,9 +90,9 @@ If you got any issues, please, create an issue in this [repository](https://gith
 
 ### To-do
 
-- [ ] Discord modal text configuration
+- [x] Discord modal text configuration
 - [ ] Notion fields configuration
-- [ ] Report numeration
+- [ ] Reports numeration
 
 ### License
 
