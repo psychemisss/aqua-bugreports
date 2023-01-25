@@ -2,9 +2,9 @@ import discord
 from discord import app_commands
 
 from cogs.feedback import Feedback, ReportMenu
-from helpers.config_manager import load_config_variable
+from helpers.config_manager import load_env_variable
 
-GUILD = discord.Object(load_config_variable("DISCORD_GUILD"))
+GUILD = discord.Object(load_env_variable("DISCORD_GUILD"))
 
 
 class MyClient(discord.Client):
@@ -40,4 +40,4 @@ async def feedback_menu(interaction: discord.Interaction):
     await interaction.response.send_message(embed=embed, view=ReportMenu())
 
 
-client.run(load_config_variable("DISCORD_TOKEN"))
+client.run(load_env_variable("DISCORD_TOKEN"))

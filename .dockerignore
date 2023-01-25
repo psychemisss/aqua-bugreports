@@ -4,3 +4,4 @@ venv
 LICENSE
 README.md
 .gitignore
+.env

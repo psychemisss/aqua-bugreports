@@ -1,12 +1,19 @@
 import requests
 import json
-from helpers.config_manager import load_config_variable
+from helpers.config_manager import load_env_variable
 
 
 class NotionAPI:
     def __init__(self):
-        self.database = load_config_variable('NOTION_DATABASE')
-        self.headers = load_config_variable('NOTION_HEADERS')
+        self.database = load_env_variable('NOTION_DATABASE')
+        self.secret = load_env_variable('NOTION_SECRET')
+        self.version = load_env_variable('NOTION_VERSION')
+
+        self.headers = {
+            "Authorization": f"Bearer {self.secret}",
+            "Content-Type": "application/json",
+            "Notion-Version": self.version
+        }
 
         self.urls = {
             "database": f"https://api.notion.com/v1/databases/{self.database}",
