@@ -1,12 +1,10 @@
 import discord
 from discord import app_commands
 
-from feedback_modal import Feedback
-from feedback_menu import ReportMenu
+from cogs.feedback import Feedback, ReportMenu
+from helpers.config_manager import load_config_variable
 
-# The guild in which this slash command will be registered.
-# It is recommended to have a test guild to separate from your "production" bot
-TEST_GUILD = discord.Object(GUILD_ID)
+GUILD = discord.Object(load_config_variable("DISCORD_GUILD"))
 
 
 class MyClient(discord.Client):
@@ -16,18 +14,17 @@ class MyClient(discord.Client):
         self.tree = app_commands.CommandTree(self)
 
     async def on_ready(self):
-        print(f'Logged in as {self.user} (ID: {self.user.id})')
-        print('------')
+        print(f'Logged in as {self.user} (ID: {self.user.id}), latency: {self.latency * 1000:.2f} ms')
 
     async def setup_hook(self) -> None:
         # Sync the application command with Discord.
-        await self.tree.sync(guild=TEST_GUILD)
+        await self.tree.sync(guild=GUILD)
 
 
 client = MyClient()
 
 
-@client.tree.command(guild=TEST_GUILD, description="Submit feedback")
+@client.tree.command(guild=GUILD, description="Submit feedback")
 async def feedback(interaction: discord.Interaction):
     # Send the modal with an instance of our `Feedback` class
     # Since modals require an interaction, they cannot be done as a response to a text command.
@@ -35,12 +32,12 @@ async def feedback(interaction: discord.Interaction):
     await interaction.response.send_modal(Feedback())
 
 
-@client.tree.command(guild=TEST_GUILD, description="Send report menu to a channel")
-async def report(interaction: discord.Interaction):
+@client.tree.command(guild=GUILD, description="Send report menu to a channel")
+async def feedback_menu(interaction: discord.Interaction):
     embed = discord.Embed(title='Отчет об ошибке',
                           description='Вы можете отправить отчет об ошибке, нажав на кнопку ниже',
                           color=discord.Color.red())
     await interaction.response.send_message(embed=embed, view=ReportMenu())
 
 
-client.run(TOKEN)
+client.run(load_config_variable("DISCORD_TOKEN"))
