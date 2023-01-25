@@ -1,0 +1,13 @@
+# THIS IS A TEMPLATE CONFIG (remove this comment when you're done configuring)
+
+{
+  "DISCORD_TOKEN": "YOUR_DISCORD_TOKEN",
+  "DISCORD_GUILD": YOUR_GUILD_ID, # Should be stored as an integer! (remove this comment when you're done configuring)
+
+  "NOTION_DATABASE": "YOUR_NOTION_DATABASE_ID",
+  "NOTION_HEADERS": {
+      "Authorization": "Bearer YOUR_NOTION_SECRET",
+      "Content-Type": "application/json",
+      "Notion-Version": "2022-02-22"
+  }
+}
